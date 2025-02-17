@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import InputEcho from "./Components/InputEcho.jsx";
+import ItemComponent from "./Components/ItemComponent.jsx";
 
 function obtenerDatos() {
   const d = [
@@ -16,37 +17,48 @@ function obtenerDatos() {
 }
 
 function App() {
-    const [count, setCount] = useState(0)
-    const [textoInput, setTextoInput] = useState('');
+  const [count, setCount] = useState(0)
+  const [textoInput, setTextoInput] = useState('');
 
-    return (
-        <>
-            <div>
-                <a href="https://vite.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo"/>
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo"/>
-                </a>
-            </div>
-            <h1>Vite + React</h1>
+  const [datos, setDatos] = useState([]);
 
-            <InputEcho titulo="Input de Prueba" textoActualizado = { nuevoTexto => setTextoInput(nuevoTexto) } />
-            <p>Input Echo tiene el texto: <strong>{ textoInput }</strong></p>
+  const btnClick = () => {
+    setDatos(obtenerDatos());
+  }
 
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.jsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </>
-    )
+  return (
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo"/>
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo"/>
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+
+      <button onClick={() => btnClick()}>Cargar Datos</button>
+      <div>
+        {datos.map(i => <ItemComponent key={i.id} data={i} />)}
+      </div>
+
+      <InputEcho titulo="Input de Prueba" textoActualizado={nuevoTexto => setTextoInput(nuevoTexto)}/>
+      <p>Input Echo tiene el texto: <strong>{textoInput}</strong></p>
+
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
 }
 
 export default App
