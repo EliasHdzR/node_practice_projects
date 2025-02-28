@@ -1,7 +1,4 @@
 const express = require("express");
-const mysql = require("mysql2/promise");
-const dbConfig = require("./dbConfig.json");
-const tareasService = require("./services/TareasService");
 
 const routerApi = require("./routes");
 const app = express();
@@ -33,12 +30,6 @@ app.get("/test-db", async (req, res) => {
     console.error(e);
     res.status(500).send("Error de DB: " + e.message);
   }
-});
-
-app.get("/tareas", async (req, res) => {
-  const tareasSvc = new tareasService();
-  const tareas = await tareasSvc.obtenerTodas();
-  res.json(tareas);
 });
 
 routerApi(app);
