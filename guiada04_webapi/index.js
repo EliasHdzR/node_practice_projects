@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 
 const routerApi = require("./routes");
 const app = express();
 const PORT = 3001;
 
+app.use(cors());
 app.use(express.json()); // Middleware para parsear el body de las peticiones
 
 app.get("/", (req, res) => {
