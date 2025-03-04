@@ -8,6 +8,22 @@ const app = express();
 const PORT = 3001;
 
 /**
+ * Existen diferentes tipos de autenticacion (Auth)
+ *     Básica: Se envía el user y el password en cada petición. No es muy seguro y es poco configurable. El header que se tiene que modificar
+ *        es el Authorization usando el formato Basic user:password en base64, después se lee ese header en el handling de la petición
+ *     Token:
+ *          JWT (Json Web Token): También se utiliza el header de Authorization pero se usa el formato Bearer con el token en base64, que
+ *          corresponde a un texto que contiene la información del usuario y tiene un  hash con el que se puede validar, también maneja
+ *          un parámetro de expiración. Se envía el password una sola vez y se obtiene un token que se envía en cada petición, así como
+ *          un refresh token que se usa para obtener un nuevo token para así no iniciar sesión cuando expira el token.
+ *
+ *          OAuth: Es un estándar en el que dependemos de un tercero confiable para manejar nuestra autenticación, como Google, Facebook, etc.
+ *      API Key: Se usa cuando el usuario no es el que va a usar estos endpoints, como para APIs públicas. A veces se puede combinar con
+ *      una secret key. Se usa el formato de header X-API-KEY con el valor de la API Key en cualquier formato o usandolo como parámetro en url (?api-key=).
+ *
+ */
+
+/**
  * El orden en el que se creen los middleware es importante, ya que se ejecutan en el orden en el que se crean
  */
 
