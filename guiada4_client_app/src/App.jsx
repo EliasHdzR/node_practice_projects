@@ -45,14 +45,9 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-
         <button onClick={() => obtenerTareas()}>
           Consultar Tareas
         </button>
-
         <input value={descripcionTarea} onChange={(e) => setDescripcionTarea(e.target.value)} />
         <button onClick={() => guardarNuevaTarea()}>
           Agregar Nueva Tarea

@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const tarea = req.body;
-  // TODO: Validar datos de la tareaj
+  // TODO: Validar datos de la tarea
   const idTarea = await tareasService.guardarNueva(tarea);
 
   // siempre hay que enviar una respuesta porque si no se queda colgado
