@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const routerApi = require("./routes");
 const requestLogger = require("./middlewares/requestLogger");
+const auth = require("./middlewares/auth");
 
 const app = express();
 const PORT = 3001;
@@ -37,6 +38,10 @@ app.use((req, res, next) => {
 });
 
 app.use(requestLogger);
+app.use("/api/v1/elementos", auth);
+app.use("/api/v1/productos", auth);
+app.use("/api/v1/tareas", auth);
+app.use("/json", auth);
 
 app.use((res, rest, next) => {
   try {
